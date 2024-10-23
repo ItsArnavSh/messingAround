@@ -1,7 +1,8 @@
 ;Prints the multiplication table for num
 ;Code to print a number to the standard output
 section .data
-    num dq 12345 ; Saved the number here
+    num dq 256 ; Saved the number here
+    till dq 5
     length dq 0; This will save the space occupied by the numbers
     st db "         ",0; The string where the number will be saved
     multiply db "X",0
@@ -11,6 +12,8 @@ section .text
     global _start
 
 _start:
+mov r15,[till]
+inc r15
 xor r14,r14
 inc r14
 mov r9,[num];Now r9 contains the word
@@ -53,7 +56,7 @@ pop r9
 pop r10
 inc r14
 add r10,r9
-cmp qword r14,11
+cmp qword r14,r15
 ;Now lets add a new line
 mov rax,1
 mov rdi,1
