@@ -1,3 +1,4 @@
+;Prints the multiplication table for num
 ;Code to print a number to the standard output
 section .data
     num dq 12345 ; Saved the number here
