@@ -1,8 +1,8 @@
 ;Prints the multiplication table for num
 ;Code to print a number to the standard output
 section .data
-    num dq 256 ; Saved the number here
-    till dq 5
+    num dq 2536 ; Saved the number here
+    till dq 54
     length dq 0; This will save the space occupied by the numbers
     st db "         ",0; The string where the number will be saved
     multiply db "X",0
