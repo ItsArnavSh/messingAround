@@ -33,6 +33,6 @@ rm "${filename}.o"
 
 echo "Conversion complete for ${filename}.c"
 
-echo ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" >>  "${filename}.asm"
-cat "${filename}.c" >> "${filename}.asm"
-rm "${filename}.c"
+echo "/*" >>  "${filename}.c"
+cat "${filename}.asm" >> "${filename}.c"
+rm "${filename}.asm"
