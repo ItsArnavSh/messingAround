@@ -1,0 +1,25 @@
+<program> ::= <statements>
+
+<statements> ::= <statements> ";" <statement>
+               | <statement>
+
+<statement> ::= <identifier> "=" <expression>
+
+<expression> ::= <expression> "+" <term>
+               | <expression> "-" <term>
+               | <term>
+
+<term> ::= <term> "*" <factor>
+         | <term> "/" <factor>
+         | <factor>
+
+<factor> ::= "(" <expression> ")"
+           | <number>
+           | <identifier>
+
+<identifier> ::= <letter> { <letter> | <digit> }
+
+<number> ::= <digit> { <digit> }
+
+<letter> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+<digit> ::= "0" | "1" | ... | "9"

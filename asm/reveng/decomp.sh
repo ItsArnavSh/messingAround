@@ -35,4 +35,3 @@ echo "Conversion complete for ${filename}.c"
 
 echo "/*" >>  "${filename}.c"
 cat "${filename}.asm" >> "${filename}.c"
-rm "${filename}.asm"

@@ -1,12 +1,3 @@
-int func(int a){
-    return 2*a;
-}
-int main(){
-    int a = 5;
-    int b = func(a);
-    return 0;
-}
-/*
 ; Disassembly of file: func.o
 ; Sun Nov  3 09:42:25 2024
 ; Type: ELF64
