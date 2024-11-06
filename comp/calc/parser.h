@@ -1,9 +1,11 @@
+#ifndef  PARSER_H
+#define PARSER_H
 #include "token.h"
 #include "error.h"
+#include <cstddef>
 #include <stdexcept>
 #include <string>
 #include <vector>
-extern int* symboltable;
 enum NodeType {
     PROGRAM,
     STATEMENTS,
@@ -20,26 +22,18 @@ enum NodeType {
 class Node {
 public:
     NodeType type;
-    Token* token;  // Pointer to the relevant Token, if this node represents a token
+    Storage value;
     std::vector<Node*> children;
 
     // Constructor for non-terminal nodes
-    Node(NodeType type) : type(type), token(nullptr) {}
+    Node(NodeType type) : type(type) {}
 
     // Constructor for terminal nodes (tokens)
-    Node(NodeType type, Token* token) : type(type), token(token) {}
+    Node(NodeType type, Token* token) : type(type), value(token->value) {}
 
     void addChild(Node* child);
 };
 
-class ASTPrinter {
-public:
-    static void print(Node* node, int level = 0);
-
-private:
-    static std::string getNodeTypeName(NodeType type);
-    static std::string getTokenValue(Token* token);
-};
 class Parser{
     public:
     std::vector<Token> tokens;
@@ -55,3 +49,4 @@ class Parser{
     Node* parseFactor();
 
 };
+#endif

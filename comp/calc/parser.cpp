@@ -2,57 +2,9 @@
 #include "token.h"
 #include <iostream>
 
-int* symbolTable = new int[counter];  // This will store all the variables
-
 void Node::addChild(Node* child) {
     children.push_back(child);
 }
-
-
-void printIndent(int level) {
-    for (int i = 0; i < level; i++) {
-        std::cout << "  ";
-    }
-}
-
-// Main print method for ASTPrinter
-void ASTPrinter::print(Node* node, int level) {
-    printIndent(level);
-    std::cout << getNodeTypeName(node->type);
-    if (node->token != nullptr) {
-        std::cout << " (" << getTokenValue(node->token) << ")";
-    }
-    std::cout << std::endl;
-
-    // Recursively print all children with increased indentation level
-    for (Node* child : node->children) {
-        print(child, level + 1);
-    }
-}
-
-// Helper function to get the name of a NodeType
-std::string ASTPrinter::getNodeTypeName(NodeType type) {
-    switch (type) {
-        case PROGRAM: return "Program";
-        case STATEMENTS: return "Statements";
-        case ASSIGNMENT: return "Assignment";
-        case ADD: return "Add";
-        case SUBT: return "Subtract";
-        case MUL: return "Multiply";
-        case DIV: return "Divide";
-        case IDENT: return "Identifier";
-        case NUM: return "Number";
-        default: return "Unknown";
-    }
-}
-
-// Helper function to get the value from the token (for literals and identifiers)
-std::string ASTPrinter::getTokenValue(Token* token) {
-    if (token->type == NUMBER) return std::to_string(token->value.number);
-    if (token->type == IDENTIFIER) return identifier[token->value.identifierKey];
-    return "";
-}
-
 
 // Parser methods
 bool Parser::match(TokenType type) {
