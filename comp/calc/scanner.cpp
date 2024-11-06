@@ -51,6 +51,15 @@ std::vector<Token> Scanner(std::string filename){
                         case '=':
                             tokens.push_back(Token(EQUAL));  // Fixed to DIVIDE instead of PLUS
                             break;
+                        case '(':
+                            tokens.push_back(Token(BOPEN));  // Fixed to DIVIDE instead of PLUS
+                            break;
+                        case ')':
+                            tokens.push_back(Token(BCLOSE));  // Fixed to DIVIDE instead of PLUS
+                            break;
+                        case ';':
+                            tokens.push_back(Token(SEMICOLON));  // Fixed to DIVIDE instead of PLUS
+                            break;
                        default:
                            // Handle unexpected characters or report an error
                            error("Unknown character: ");

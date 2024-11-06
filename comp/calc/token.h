@@ -26,6 +26,9 @@ typedef enum TokenType {
     MULTIPLY,
     EQUAL,
     IDENTIFIER,
+    SEMICOLON,
+    BOPEN,
+    BCLOSE,
     NUMBER
 } TokenType;
 

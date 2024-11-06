@@ -1,22 +1,50 @@
 #include "token.h"
+#include "error.h"
 #include <stdexcept>
 #include <string>
 #include <vector>
+extern int* symboltable;
+enum NodeType {
+    PROGRAM,
+    STATEMENTS,
+    ASSIGNMENT,
+    ADD,
+    SUBT,
+    MUL,
+    DIV,
+    IDENT,
+    NUM,
+    LEFT_PAREN,
+    RIGHT_PAREN
+};
 class Node {
 public:
-    std::string type;
-    std::string value;  // For identifiers and numbers
+    NodeType type;
+    Token* token;  // Pointer to the relevant Token, if this node represents a token
     std::vector<Node*> children;
 
-    Node(const std::string& type, const std::string& value = "") : type(type), value(value) {}
+    // Constructor for non-terminal nodes
+    Node(NodeType type) : type(type), token(nullptr) {}
+
+    // Constructor for terminal nodes (tokens)
+    Node(NodeType type, Token* token) : type(type), token(token) {}
 
     void addChild(Node* child);
 };
+
+class ASTPrinter {
+public:
+    static void print(Node* node, int level = 0);
+
+private:
+    static std::string getNodeTypeName(NodeType type);
+    static std::string getTokenValue(Token* token);
+};
 class Parser{
-    private:
+    public:
     std::vector<Token> tokens;
     int current = 0;
-
+    Parser(std::vector<Token> tokens): tokens(tokens){};
     bool match(TokenType type);
     Token consume(TokenType type, const std::string& errorMessage);
     Node* parseProgram();
